@@ -89,11 +89,9 @@ export class MJApi {
       maxBodyLength: Infinity,
 
     });
-    logger.info("proxyDownloadImageTest response %d", response);
+    logger.info("proxyDownloadImageTest response %d", response.data);
     const filename = url.split('/')!.pop()!;
-/*    if (config.imagesPath != '') {
-      fs.writeFileSync(config.imagesPath + '/' + filename, response.data, 'binary');
-    }*/
+    logger.info("proxyDownloadImageTest filename %d", filename);
     const fileBuffer = Buffer.from(response.data, 'binary');
     logger.info("fileBuffer %s", fileBuffer);
     return FileBox.fromBuffer(fileBuffer, filename);
