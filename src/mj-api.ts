@@ -118,6 +118,30 @@ export class MJApi {
     }
   }
 
+    private async downloadImageAndConvertToBase64(url: string): Promise<FileBox> {
+    try {
+      // 使用axios下载图片，响应类型为'arraybuffer'
+      const response = await axios.get(url, {
+        responseType: 'arraybuffer',
+      });
+
+      // 将ArrayBuffer转换为Base64
+      const base64 = Buffer.from(response.data, 'binary').toString('base64');
+
+      // 从URL中提取文件名
+      const filename = url.split('/').pop() || 'image.jpg';
+
+      // 使用FileBox.fromBase64创建一个FileBox对象
+      const fileBox = FileBox.fromBase64(base64, filename);
+
+      return fileBox;
+    } catch (error) {
+      console.error('Error downloading and converting image:', error);
+      throw error;
+    }
+  }
+
+
 
   private async handle(req: Request, res: Response) {
     try {
@@ -161,7 +185,8 @@ export class MJApi {
             logger.info("imageUrl %s", imageUrl);
             //image = await this.proxyDownloadImageTest(imageUrl);
             // 调用函数
-            image = await this.downloadImageAndConvertToBuffer("https://oss.caizidao.com.cn/liveIMg/a93af08e103ab51712c9fe7fcc3a386.png");
+            //image = await this.downloadImageAndConvertToBuffer(imageUrl);
+            image = await this.downloadImageAndConvertToBase64(imageUrl);
           }
           logger.info("say image %s", image);
           room.say(image);
