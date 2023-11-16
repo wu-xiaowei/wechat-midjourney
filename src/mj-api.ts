@@ -142,6 +142,7 @@ export class MJApi {
             logger.info("imageUrl %s", imageUrl);
             image = await this.proxyDownloadImageTest(req.body.imageUrl);
           }
+          logger.info("say image %s", image);
           room.say(image);
         }
       }
