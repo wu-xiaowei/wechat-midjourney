@@ -28,7 +28,10 @@ export class MJApi {
     this.wechaty = wechaty;
     this.axiosInstance = axios.create({
       baseURL: config.mjProxyEndpoint,
-      timeout: 60000
+      timeout: 60000,
+      headers: {
+        'mj-api-secret': 'd9713b28-289d-4945-a22c-b3e457ad827a'
+      },
     });
   }
 
