@@ -110,10 +110,10 @@ export class MJApi {
 
       // 从URL中提取文件名
       const filename = url.split('/').pop() || 'image.jpg';
-      logger.info("proxyDownloadImageTest filename %d", filename);
+      logger.info("downloadImageAndConvertToBuffer filename %s", filename);
       // 使用FileBox.fromBuffer将ArrayBuffer转换为FileBox对象
       const fileBox = FileBox.fromBuffer(Buffer.from(response.data), filename);
-      logger.info("fileBox  %d", fileBox);
+      logger.info("fileBox  %s", fileBox);
       return fileBox;
     } catch (error) {
       console.error('Error downloading image:', error);
