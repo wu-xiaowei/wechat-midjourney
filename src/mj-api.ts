@@ -78,6 +78,28 @@ export class MJApi {
     return FileBox.fromBuffer(fileBuffer, filename);
   }
 
+   private async proxyDownloadImageTest(url: string): Promise<FileBox> {
+    logger.info("proxyDownloadImageTest %d", url);
+    const response: AxiosResponse = await axios({
+      method: 'GET',
+      url: url,
+      responseType: 'arraybuffer',
+      timeout: 10000,
+      maxContentLength: Infinity,
+      maxBodyLength: Infinity,
+
+    });
+    logger.info("proxyDownloadImageTest response %d", response);
+    const filename = url.split('/')!.pop()!;
+/*    if (config.imagesPath != '') {
+      fs.writeFileSync(config.imagesPath + '/' + filename, response.data, 'binary');
+    }*/
+    const fileBuffer = Buffer.from(response.data, 'binary');
+    logger.info("fileBuffer %d", fileBuffer);
+    return FileBox.fromBuffer(fileBuffer, filename);
+  }
+
+
   private async handle(req: Request, res: Response) {
     try {
       const state = req.body.state;
@@ -114,7 +136,8 @@ export class MJApi {
           if (config.httpProxy) {
             image = await this.proxyDownloadImage(req.body.imageUrl);
           } else {
-            image = FileBox.fromUrl(req.body.imageUrl);
+             // image = FileBox.fromUrl(imageUrl);
+            image = await this.proxyDownloadImageTest(imageUrl);
           }
           room.say(image);
         }
