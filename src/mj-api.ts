@@ -79,7 +79,7 @@ export class MJApi {
   }
 
    private async proxyDownloadImageTest(url: string): Promise<FileBox> {
-    logger.info("proxyDownloadImageTest %d", url);
+    logger.info("proxyDownloadImageTest %s", url);
     const response: AxiosResponse = await axios({
       method: 'GET',
       url: url,
@@ -95,7 +95,7 @@ export class MJApi {
       fs.writeFileSync(config.imagesPath + '/' + filename, response.data, 'binary');
     }*/
     const fileBuffer = Buffer.from(response.data, 'binary');
-    logger.info("fileBuffer %d", fileBuffer);
+    logger.info("fileBuffer %s", fileBuffer);
     return FileBox.fromBuffer(fileBuffer, filename);
   }
 
