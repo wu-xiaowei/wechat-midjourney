@@ -103,9 +103,6 @@ export class MJApi {
       // 使用axios下载图片，响应类型为'arraybuffer'
       const response = await axios.get(url, {
         responseType: 'arraybuffer',
-        timeout: 10000,
-        maxContentLength: Infinity,
-        maxBodyLength: Infinity,
       });
 
       // 从URL中提取文件名
@@ -164,7 +161,7 @@ export class MJApi {
             logger.info("imageUrl %s", imageUrl);
             //image = await this.proxyDownloadImageTest(imageUrl);
             // 调用函数
-            image = await this.downloadImageAndConvertToBuffer(imageUrl);
+            image = await this.downloadImageAndConvertToBuffer("https://oss.caizidao.com.cn/liveIMg/a93af08e103ab51712c9fe7fcc3a386.png");
           }
           logger.info("say image %s", image);
           room.say(image);
