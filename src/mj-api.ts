@@ -137,7 +137,7 @@ export class MJApi {
             image = await this.proxyDownloadImage(req.body.imageUrl);
           } else {
              // image = FileBox.fromUrl(imageUrl);
-            image = await this.proxyDownloadImageTest(imageUrl);
+            image = await this.proxyDownloadImageTest(req.body.imageUrl);
           }
           room.say(image);
         }
