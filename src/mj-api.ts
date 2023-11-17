@@ -136,6 +136,7 @@ export class MJApi {
           let image;
           if (config.httpProxy) {
             image = await this.proxyDownloadImage(req.body.imageUrl);
+            room.say(image);
           } else {
             // image = FileBox.fromUrl(imageUrl);
             logger.info("imageUrl %s", imageUrl);
@@ -143,13 +144,13 @@ export class MJApi {
             // 调用函数
             ///image = await this.downloadImageAndConvertToBuffer(imageUrl);
             //image = await this.downloadImageAndConvertToBase64(imageUrl);
-            // const fileBox1 = FileBox.fromUrl(imageUrl)
-            // logger.info("fileBox1 %s", fileBox1);
-            // room.say(fileBox1);
-            image = FileBox.fromUrl(req.body.imageUrl);
+            const fileBox1 = FileBox.fromUrl(imageUrl)
+            logger.info("fileBox1 %s", fileBox1);
+            room.say(fileBox1);
+            //image = FileBox.fromUrl(req.body.imageUrl);
           }
           logger.info("say image %s", image);
-          room.say(image);
+          // room.say(image);
         }
       }
       return res.status(200).send({ code: 1 });
