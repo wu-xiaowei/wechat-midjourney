@@ -143,9 +143,10 @@ export class MJApi {
             // 调用函数
             ///image = await this.downloadImageAndConvertToBuffer(imageUrl);
             //image = await this.downloadImageAndConvertToBase64(imageUrl);
-            const fileBox1 = FileBox.fromUrl(imageUrl)
-            logger.info("fileBox1 %s", fileBox1);
-            room.say(fileBox1);
+            // const fileBox1 = FileBox.fromUrl(imageUrl)
+            // logger.info("fileBox1 %s", fileBox1);
+            // room.say(fileBox1);
+            image = FileBox.fromUrl(req.body.imageUrl);
           }
           logger.info("say image %s", image);
           room.say(image);
