@@ -132,7 +132,7 @@ export class MJApi {
           const prompt = req.body.prompt;
           const imageUrl = req.body.imageUrl;
           logger.info("imageUrl %s", imageUrl);
-          await room.say(`@${userName} \n🎨 ${action == 'IMAGINE' ? '绘图' : '变换'}成功，用时 ${displayMilliseconds(time)}\n✨ Prompt: ${prompt}\n📨 任务ID: ${taskId}\n🪄 放大 U1～U4，变换 V1～V4\n✏️ 使用[/up 任务ID 操作]\n/up ${taskId} U1`);
+          await room.say(`@${userName} \n🎨 ${action == 'IMAGINE' ? '绘图' : '变换'}成功，用时 ${displayMilliseconds(time)}\n✨ Prompt: ${prompt}\n📨 任务ID: ${taskId}\n🪄 放大 U1～U4，变换 V1～V4\n✏️ 使用[/up 任务ID 操作]\n/up ${taskId} U1\n 图片地址：${imageUrl}`);
           let image;
           if (config.httpProxy) {
             image = await this.proxyDownloadImage(req.body.imageUrl);
