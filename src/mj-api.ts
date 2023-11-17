@@ -97,28 +97,6 @@ export class MJApi {
     return FileBox.fromBuffer(fileBuffer, filename);
   }
 
-  private async downloadImageAndConvertToBuffer(url: string): Promise<FileBox> {
-    logger.info("downloadImageAndConvertToBuffer %s", url);
-    try {
-      // 使用axios下载图片，响应类型为'arraybuffer'
-      const response = await axios.get(url, {
-        responseType: 'arraybuffer',
-      });
-
-      // 从URL中提取文件名
-      const filename = url.split('/').pop() || 'image.jpg';
-      logger.info("downloadImageAndConvertToBuffer filename %s", filename);
-      // 使用FileBox.fromBuffer将ArrayBuffer转换为FileBox对象
-      const fileBox = FileBox.fromBuffer(Buffer.from(response.data), filename);
-      logger.info("fileBox  %s", fileBox);
-      return fileBox;
-    } catch (error) {
-      console.error('Error downloading image:', error);
-      throw error;
-    }
-  }
-
-
 
 
   private async handle(req: Request, res: Response) {
