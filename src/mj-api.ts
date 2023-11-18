@@ -84,7 +84,7 @@ export class MJApi {
       method: 'GET',
       url: url,
       responseType: 'arraybuffer',
-      timeout: 10000,
+      timeout: 1000000,
       maxContentLength: Infinity,
       maxBodyLength: Infinity,
 
