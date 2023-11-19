@@ -12,6 +12,6 @@ export const config: IConfig = {
   mjProxyEndpoint: process.env.MJ_PROXY_ENDPOINT || "http://localhost:8022/mj",
   notifyHook: process.env.MJ_NOFIFY_HOOK || "http://localhost:4120/notify",
   // httpProxy: process.env.HTTP_PROXY || "",
-  httpProxy: "http://127.0.0.1:7890",
+  httpProxy: "https://wechat-mj.zeabur.app",
   imagesPath: process.env.IMAGE_PATH || ""
 }
